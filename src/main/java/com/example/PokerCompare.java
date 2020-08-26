@@ -8,20 +8,20 @@ public class PokerCompare {
     List<Poker> blackSorted = black.stream().sorted().collect(Collectors.toList());
     List<Poker> whiteSorted = white.stream().sorted().collect(Collectors.toList());
     if(isPokersConsistent(blackSorted,whiteSorted)){
-      return "Tie.";
+      return ResultEnum.TIE.getResult();
     }
     if (isPokersStraightFlush(blackSorted)) {
-      return "Black wins.";
+      return ResultEnum.BLACK_WIN.getResult();
     }
     if (isPokersStraightFlush(whiteSorted)) {
-      return "White wins.";
+      return ResultEnum.WHITE_WIN.getResult();
     }
     for (Poker blackPoker : blackSorted) {
       for (Poker whitePoker : whiteSorted) {
         if (blackPoker.getNum() > whitePoker.getNum()) {
-          return "Black wins.";
+          return ResultEnum.BLACK_WIN.getResult();
         } else if (blackPoker.getNum() < whitePoker.getNum()) {
-          return "White wins.";
+          return ResultEnum.WHITE_WIN.getResult();
         }
       }
     }
