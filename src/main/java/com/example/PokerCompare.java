@@ -1,15 +1,20 @@
 package com.example;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PokerCompare {
-  public String compare(String[] black, String[] white) {
-    long blackCountA = Arrays.stream(black).filter(item -> item.charAt(0) == 'A').count();
-    long whiteCountA = Arrays.stream(white).filter(item -> item.charAt(0) == 'A').count();
-    if (blackCountA > 0) {
-      return "Black wins.";
-    } else if (whiteCountA > 0) {
-      return "White wins.";
+  public String compare(List<Poker> black, List<Poker> white) {
+    List<Poker> blackSorted = black.stream().sorted().collect(Collectors.toList());
+    List<Poker> whiteSorted = white.stream().sorted().collect(Collectors.toList());
+    for (Poker blackPoker : blackSorted) {
+      for (Poker whitePoker : whiteSorted) {
+        if (blackPoker.getNum() > whitePoker.getNum()) {
+          return "Black wins.";
+        } else if (blackPoker.getNum() < whitePoker.getNum()) {
+          return "White wins.";
+        }
+      }
     }
     return null;
   }
