@@ -63,4 +63,27 @@ public class PokerCompareTest {
     assertEquals("Black wins.", actual);
   }
 
+  @Test
+  void should_black_wins_when_compare_given_black_3D_4D_5D_6D_7D_and_white_2C_3H_4S_8C_10S() {
+    // given
+    List<Poker> black = new ArrayList<Poker>();
+    black.add(new Poker(3, 'D'));
+    black.add(new Poker(4, 'D'));
+    black.add(new Poker(5, 'D'));
+    black.add(new Poker(6, 'D'));
+    black.add(new Poker(7, 'D'));
+
+    List<Poker> white = new ArrayList<>();
+    white.add(new Poker(2, 'C'));
+    white.add(new Poker(3, 'H'));
+    white.add(new Poker(4, 'S'));
+    white.add(new Poker(8, 'C'));
+    white.add(new Poker(10, 'S'));
+
+    // when
+    String actual = pokerCompare.compare(black, white);
+    // then
+    assertEquals("Black wins.", actual);
+  }
+
 }

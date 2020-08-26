@@ -39,12 +39,13 @@ public class Poker implements Comparable<Poker> {
       return false;
     }
     Poker poker = (Poker) o;
-    return num == poker.num;
+    return num == poker.num &&
+        suit == poker.suit;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(num);
+    return Objects.hash(num, suit);
   }
 
   @Override
