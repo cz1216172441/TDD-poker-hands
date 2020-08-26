@@ -18,7 +18,7 @@ public class PokerCompareTest {
   }
 
   @Test
-  void should_white_wins_when_compare_given_black_2H_3D_5S_9C_10D_and_white_2C_3H_4S_8C_14H() {
+  void should_return_white_wins_when_compare_given_black_2H_3D_5S_9C_10D_and_white_2C_3H_4S_8C_14H() {
     // given
     List<Poker> black = new ArrayList<Poker>();
     black.add(new Poker(2, 'H'));
@@ -41,7 +41,7 @@ public class PokerCompareTest {
   }
 
   @Test
-  void should_black_wins_when_compare_given_black_2H_3D_5S_9C_10D_and_white_2C_3H_4S_8C_10S() {
+  void should_return_black_wins_when_compare_given_black_2H_3D_5S_9C_10D_and_white_2C_3H_4S_8C_10S() {
     // given
     List<Poker> black = new ArrayList<Poker>();
     black.add(new Poker(2, 'H'));
@@ -64,7 +64,7 @@ public class PokerCompareTest {
   }
 
   @Test
-  void should_black_wins_when_compare_given_black_3D_4D_5D_6D_7D_and_white_2C_3H_4S_8C_10S() {
+  void should_return_black_wins_when_compare_given_black_3D_4D_5D_6D_7D_and_white_2C_3H_4S_8C_10S() {
     // given
     List<Poker> black = new ArrayList<Poker>();
     black.add(new Poker(3, 'D'));
