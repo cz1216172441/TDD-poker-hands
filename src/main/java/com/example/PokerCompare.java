@@ -7,6 +7,9 @@ public class PokerCompare {
   public String compare(List<Poker> black, List<Poker> white) {
     List<Poker> blackSorted = black.stream().sorted().collect(Collectors.toList());
     List<Poker> whiteSorted = white.stream().sorted().collect(Collectors.toList());
+    if(isPokersConsistent(blackSorted,whiteSorted)){
+      return "Tie.";
+    }
     if (isPokersStraightFlush(blackSorted)) {
       return "Black wins.";
     }
@@ -44,6 +47,15 @@ public class PokerCompare {
     return pokers.stream()
         .filter(poker -> pokers.get(0).getSuit() == poker.getSuit())
         .count() == 5;
+  }
+
+  private boolean isPokersConsistent(List<Poker> black, List<Poker> white) {
+    for(int i = 0; i < black.size() - 1; i++){
+      if(!(black.get(i).equals(white.get(i)))){
+        return false;
+      }
+    }
+    return true;
   }
 
 }

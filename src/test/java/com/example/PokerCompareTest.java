@@ -86,4 +86,27 @@ public class PokerCompareTest {
     assertEquals("Black wins.", actual);
   }
 
+  @Test
+  void should_return_tie_when_compare_given_black_3D_4D_5D_6D_7D_and_white_3D_4D_5D_6D_7D() {
+    // given
+    List<Poker> black = new ArrayList<Poker>();
+    black.add(new Poker(3, 'D'));
+    black.add(new Poker(4, 'D'));
+    black.add(new Poker(5, 'D'));
+    black.add(new Poker(6, 'D'));
+    black.add(new Poker(7, 'D'));
+
+    List<Poker> white = new ArrayList<>();
+    white.add(new Poker(3, 'D'));
+    white.add(new Poker(4, 'D'));
+    white.add(new Poker(5, 'D'));
+    white.add(new Poker(6, 'D'));
+    white.add(new Poker(7, 'D'));
+
+    // when
+    String actual = pokerCompare.compare(black, white);
+    // then
+    assertEquals("Tie.", actual);
+  }
+
 }
