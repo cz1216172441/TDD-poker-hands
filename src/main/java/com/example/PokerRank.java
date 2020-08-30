@@ -23,6 +23,9 @@ public class PokerRank {
         if (isPokersStraight(pokersSorted)) {
             return PokerRankEnum.STRAIGHT.getRank();
         }
+        if (isThreeOfAKind(pokersSorted)) {
+            return PokerRankEnum.THREE_OF_A_KIND.getRank();
+        }
         return -1;
     }
 
@@ -51,6 +54,16 @@ public class PokerRank {
         Map<Integer, Integer> map = classify(pokers);
         for (Integer num: map.keySet()) {
             if (map.get(num) == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isThreeOfAKind(List<Poker> pokers) {
+        Map<Integer, Integer> map = classify(pokers);
+        for (Integer num: map.keySet()) {
+            if (map.get(num) == 3) {
                 return true;
             }
         }

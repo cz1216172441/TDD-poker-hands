@@ -6,7 +6,8 @@ public enum PokerRankEnum {
     FOUR_OF_A_KIND("Four of a kind", 7),
     FULL_HOUSE("Full House", 6),
     FLUSH("Flush", 5),
-    STRAIGHT("Straight", 4);
+    STRAIGHT("Straight", 4),
+    THREE_OF_A_KIND("Three of a kind", 3);
 
     private String name;
 
