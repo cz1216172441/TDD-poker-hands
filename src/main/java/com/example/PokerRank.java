@@ -26,6 +26,9 @@ public class PokerRank {
         if (isThreeOfAKind(pokersSorted)) {
             return PokerRankEnum.THREE_OF_A_KIND.getRank();
         }
+        if (isTwoPairs(pokersSorted)) {
+            return PokerRankEnum.TWO_PAIRS.getRank();
+        }
         return -1;
     }
 
@@ -68,6 +71,14 @@ public class PokerRank {
             }
         }
         return false;
+    }
+
+    private boolean isTwoPairs(List<Poker> pokers) {
+        long count = pokers.stream()
+                .map(Poker::getNum)
+                .distinct()
+                .count();
+        return count == 3;
     }
 
     private boolean isFullHouse(List<Poker> pokers) {
