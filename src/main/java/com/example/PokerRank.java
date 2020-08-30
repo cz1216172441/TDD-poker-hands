@@ -3,25 +3,34 @@ package com.example;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PokerRank {
     public int calculatePokerRank(List<Poker> pokers) {
-        if (isPokersFlush(pokers) && isPokersFlush(pokers)) {
+        List<Poker> pokersSorted = pokers.stream().sorted().collect(Collectors.toList());
+        if (isPokersStraightFlush(pokersSorted)) {
             return PokerRankEnum.STRAIGHT_FLUSH.getRank();
         }
-        if (isFourOfAKind(pokers)) {
+        if (isFourOfAKind(pokersSorted)) {
             return PokerRankEnum.FOUR_OF_A_KIND.getRank();
         }
-        if (isFullHouse(pokers)) {
+        if (isFullHouse(pokersSorted)) {
             return PokerRankEnum.FULL_HOUSE.getRank();
         }
+        if (isPokersFlush(pokersSorted)) {
+            return PokerRankEnum.FLUSH.getRank();
+        }
         return -1;
+    }
+
+    private boolean isPokersStraightFlush(List<Poker> pokers) {
+        return isPokersStraight(pokers) && isPokersFlush(pokers);
     }
 
     private boolean isPokersStraight(List<Poker> pokers) {
         boolean isPokersStraight = true;
         for (int i = 0; i < pokers.size() - 1; i++) {
-            if (!(pokers.get(i).getNum() - pokers.get(i + 1).getNum() == 1)) {
+            if (pokers.get(i).getNum() - pokers.get(i + 1).getNum() != 1) {
                 isPokersStraight = false;
                 break;
             }

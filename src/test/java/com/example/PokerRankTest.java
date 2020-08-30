@@ -56,4 +56,19 @@ public class PokerRankTest {
         assertEquals(PokerRankEnum.FULL_HOUSE.getRank(), actualRank);
     }
 
+    @Test
+    void should_return_flush_rank_when_calculate_poker_rank_given_2H_3H_5H_9H_KH() {
+        // given
+        List<Poker> pokers = new ArrayList<>();
+        pokers.add(new Poker(2, 'H'));
+        pokers.add(new Poker(3, 'H'));
+        pokers.add(new Poker(5, 'H'));
+        pokers.add(new Poker(9, 'H'));
+        pokers.add(new Poker(13, 'H'));
+        // when
+        int actualRank = pokerRank.calculatePokerRank(pokers);
+        // then
+        assertEquals(PokerRankEnum.FLUSH.getRank(), actualRank);
+    }
+
 }
