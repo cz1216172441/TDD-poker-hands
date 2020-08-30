@@ -138,6 +138,8 @@ public class PokerCompareTest {
         white.add(new Poker(3, 'D'));
 
         // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(8);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(7);
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
@@ -161,6 +163,8 @@ public class PokerCompareTest {
         white.add(new Poker(8, 'D'));
 
         // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(8);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(8);
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.WHITE_WIN.getValue(), actual);
@@ -184,6 +188,8 @@ public class PokerCompareTest {
         white.add(new Poker(3, 'D'));
 
         // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(7);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(6);
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
