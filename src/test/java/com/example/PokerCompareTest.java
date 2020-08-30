@@ -2,6 +2,7 @@ package com.example;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,6 +166,31 @@ public class PokerCompareTest {
         // when
         when(pokerRank.calculatePokerRank(black)).thenReturn(8);
         when(pokerRank.calculatePokerRank(white)).thenReturn(8);
+        int actual = pokerCompare.compare(black, white);
+        // then
+        assertEquals(CompareResultEnum.WHITE_WIN.getValue(), actual);
+    }
+
+    @Test
+    void should_return_white_win_value_when_compare_given_black_3H_3D_5S_9C_KD_and_white_4H_4D_5S_9C_KD() {
+        // given
+        List<Poker> black = new ArrayList<>();
+        black.add(new Poker(3, 'H'));
+        black.add(new Poker(3, 'D'));
+        black.add(new Poker(5, 'S'));
+        black.add(new Poker(9, 'C'));
+        black.add(new Poker(13, 'D'));
+
+        List<Poker> white = new ArrayList<>();
+        white.add(new Poker(4, 'H'));
+        white.add(new Poker(4, 'D'));
+        white.add(new Poker(5, 'S'));
+        white.add(new Poker(9, 'C'));
+        white.add(new Poker(13, 'D'));
+
+        // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(1);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(1);
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.WHITE_WIN.getValue(), actual);
