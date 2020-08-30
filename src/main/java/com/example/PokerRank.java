@@ -7,6 +7,9 @@ public class PokerRank {
         if (isPokersFlush(pokers) && isPokersFlush(pokers)) {
             return PokerRankEnum.STRAIGHT_FLUSH.getRank();
         }
+        if (isFourOfAKind(pokers)) {
+            return PokerRankEnum.FOUR_OF_A_KIND.getRank();
+        }
         return -1;
     }
 
@@ -25,5 +28,12 @@ public class PokerRank {
         return pokers.stream()
                 .filter(poker -> pokers.get(0).getSuit() == poker.getSuit())
                 .count() == 5;
+    }
+
+    private boolean isFourOfAKind(List<Poker> pokers) {
+        return pokers.stream()
+                .map(Poker::getNum)
+                .distinct()
+                .count() == 2;
     }
 }

@@ -26,4 +26,19 @@ public class PokerRankTest {
         assertEquals(PokerRankEnum.STRAIGHT_FLUSH.getRank(), actualRank);
     }
 
+    @Test
+    void should_return_four_of_a_kind_rank_when_calculate_poker_rank_given_3H_3D_3S_5C_3D() {
+        // given
+        List<Poker> pokers = new ArrayList<Poker>();
+        pokers.add(new Poker(3, 'H'));
+        pokers.add(new Poker(3, 'D'));
+        pokers.add(new Poker(3, 'S'));
+        pokers.add(new Poker(5, 'C'));
+        pokers.add(new Poker(3, 'D'));
+        // when
+        int actualRank = pokerRank.calculatePokerRank(pokers);
+        // then
+        assertEquals(PokerRankEnum.FOUR_OF_A_KIND.getRank(), actualRank);
+    }
+
 }
