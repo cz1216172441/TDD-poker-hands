@@ -50,7 +50,7 @@ public class PokerCompareTest {
     @Test
     void should_return_black_win_value_when_compare_given_black_2H_3D_5S_9C_10D_and_white_2C_3H_4S_8C_10S() {
         // given
-        List<Poker> black = new ArrayList<Poker>();
+        List<Poker> black = new ArrayList<>();
         black.add(new Poker(2, 'H'));
         black.add(new Poker(3, 'D'));
         black.add(new Poker(5, 'S'));
@@ -75,7 +75,7 @@ public class PokerCompareTest {
     @Test
     void should_return_black_win_value_when_compare_given_black_3D_4D_5D_6D_7D_and_white_2C_3H_4S_8C_10S() {
         // given
-        List<Poker> black = new ArrayList<Poker>();
+        List<Poker> black = new ArrayList<>();
         black.add(new Poker(3, 'D'));
         black.add(new Poker(4, 'D'));
         black.add(new Poker(5, 'D'));
@@ -100,7 +100,7 @@ public class PokerCompareTest {
     @Test
     void should_return_tie_value_when_compare_given_black_3D_4D_5D_6D_7D_and_white_3D_4D_5D_6D_7D() {
         // given
-        List<Poker> black = new ArrayList<Poker>();
+        List<Poker> black = new ArrayList<>();
         black.add(new Poker(3, 'D'));
         black.add(new Poker(4, 'D'));
         black.add(new Poker(5, 'D'));
@@ -118,6 +118,29 @@ public class PokerCompareTest {
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.TIE.getValue(), actual);
+    }
+
+    @Test
+    void should_return_black_win_value_when_compare_given_black_3D_4D_5D_6D_7D_and_white_3H_3D_3S_5C_3D() {
+        // given
+        List<Poker> black = new ArrayList<>();
+        black.add(new Poker(3, 'D'));
+        black.add(new Poker(4, 'D'));
+        black.add(new Poker(5, 'D'));
+        black.add(new Poker(6, 'D'));
+        black.add(new Poker(7, 'D'));
+
+        List<Poker> white = new ArrayList<>();
+        white.add(new Poker(3, 'H'));
+        white.add(new Poker(3, 'D'));
+        white.add(new Poker(3, 'S'));
+        white.add(new Poker(5, 'C'));
+        white.add(new Poker(3, 'D'));
+
+        // when
+        int actual = pokerCompare.compare(black, white);
+        // then
+        assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
     }
 
 }
