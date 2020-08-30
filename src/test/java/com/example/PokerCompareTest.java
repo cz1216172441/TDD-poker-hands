@@ -98,6 +98,31 @@ public class PokerCompareTest {
     }
 
     @Test
+    void should_return_white_win_value_when_compare_given_black_2C_3H_4S_8C_10S_and_white_3D_4D_5D_6D_7D() {
+        // given
+        List<Poker> black = new ArrayList<>();
+        black.add(new Poker(2, 'C'));
+        black.add(new Poker(3, 'H'));
+        black.add(new Poker(4, 'S'));
+        black.add(new Poker(8, 'C'));
+        black.add(new Poker(10, 'S'));
+
+        List<Poker> white = new ArrayList<>();
+        white.add(new Poker(3, 'D'));
+        white.add(new Poker(4, 'D'));
+        white.add(new Poker(5, 'D'));
+        white.add(new Poker(6, 'D'));
+        white.add(new Poker(7, 'D'));
+
+        // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(8);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(0);
+        int actual = pokerCompare.compare(black, white);
+        // then
+        assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
+    }
+
+    @Test
     void should_return_tie_value_when_compare_given_black_3D_4D_5D_6D_7D_and_white_3D_4D_5D_6D_7D() {
         // given
         List<Poker> black = new ArrayList<>();
