@@ -29,6 +29,9 @@ public class PokerRank {
         if (isTwoPairs(pokersSorted)) {
             return PokerRankEnum.TWO_PAIRS.getRank();
         }
+        if (isPair(pokersSorted)) {
+            return PokerRankEnum.PAIR.getRank();
+        }
         return -1;
     }
 
@@ -59,6 +62,10 @@ public class PokerRank {
 
     private boolean isThreeOfAKind(List<Poker> pokers) {
         return judgeRepeatedKind(pokers, 3);
+    }
+
+    private boolean isPair(List<Poker> pokers) {
+        return judgeRepeatedKind(pokers, 2);
     }
 
     private boolean judgeRepeatedKind(List<Poker> pokers, int i) {

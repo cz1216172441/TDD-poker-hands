@@ -8,7 +8,8 @@ public enum PokerRankEnum {
     FLUSH("Flush", 5),
     STRAIGHT("Straight", 4),
     THREE_OF_A_KIND("Three of a kind", 3),
-    TWO_PAIRS("Two pairs", 2);
+    TWO_PAIRS("Two pairs", 2),
+    PAIR("Pair", 1);
 
     private String name;
 

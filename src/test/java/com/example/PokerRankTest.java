@@ -116,4 +116,19 @@ public class PokerRankTest {
         assertEquals(PokerRankEnum.TWO_PAIRS.getRank(), actualRank);
     }
 
+    @Test
+    void should_return_pair_rank_when_calculate_poker_rank_given_3H_3D_5S_9C_KD() {
+        // given
+        List<Poker> pokers = new ArrayList<>();
+        pokers.add(new Poker(3, 'H'));
+        pokers.add(new Poker(3, 'D'));
+        pokers.add(new Poker(5, 'S'));
+        pokers.add(new Poker(9, 'C'));
+        pokers.add(new Poker(13, 'D'));
+        // when
+        int actualRank = pokerRank.calculatePokerRank(pokers);
+        // then
+        assertEquals(PokerRankEnum.PAIR.getRank(), actualRank);
+    }
+
 }
