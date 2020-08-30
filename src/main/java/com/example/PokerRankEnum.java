@@ -3,7 +3,8 @@ package com.example;
 public enum PokerRankEnum {
 
     STRAIGHT_FLUSH("Straight flush", 8),
-    FOUR_OF_A_KIND("Four of a kind", 7);
+    FOUR_OF_A_KIND("Four of a kind", 7),
+    FULL_HOUSE("Full House", 6);
 
     private String name;
 

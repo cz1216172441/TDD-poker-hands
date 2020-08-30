@@ -1,6 +1,8 @@
 package com.example;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PokerRank {
     public int calculatePokerRank(List<Poker> pokers) {
@@ -9,6 +11,9 @@ public class PokerRank {
         }
         if (isFourOfAKind(pokers)) {
             return PokerRankEnum.FOUR_OF_A_KIND.getRank();
+        }
+        if (isFullHouse(pokers)) {
+            return PokerRankEnum.FULL_HOUSE.getRank();
         }
         return -1;
     }
@@ -31,9 +36,32 @@ public class PokerRank {
     }
 
     private boolean isFourOfAKind(List<Poker> pokers) {
-        return pokers.stream()
+        Map<Integer, Integer> map = classify(pokers);
+        for (Integer num: map.keySet()) {
+            if (map.get(num) == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isFullHouse(List<Poker> pokers) {
+        long count = pokers.stream()
                 .map(Poker::getNum)
                 .distinct()
-                .count() == 2;
+                .count();
+        return count == 2;
+    }
+
+    private Map<Integer, Integer> classify(List<Poker> pokers) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (Poker poker : pokers) {
+            if (!map.containsKey(poker.getNum())) {
+                map.put(poker.getNum(), 1);
+            } else {
+                map.put(poker.getNum(), map.get(poker.getNum()) + 1);
+            }
+        }
+        return map;
     }
 }
