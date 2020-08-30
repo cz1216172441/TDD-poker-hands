@@ -121,31 +121,6 @@ public class PokerCompareTest {
     }
 
     @Test
-    void should_return_black_win_value_when_compare_given_black_3D_4D_5D_6D_7D_and_white_3H_3D_3S_5C_3D() {
-        // given
-        List<Poker> black = new ArrayList<>();
-        black.add(new Poker(3, 'D'));
-        black.add(new Poker(4, 'D'));
-        black.add(new Poker(5, 'D'));
-        black.add(new Poker(6, 'D'));
-        black.add(new Poker(7, 'D'));
-
-        List<Poker> white = new ArrayList<>();
-        white.add(new Poker(3, 'H'));
-        white.add(new Poker(3, 'D'));
-        white.add(new Poker(3, 'S'));
-        white.add(new Poker(5, 'C'));
-        white.add(new Poker(3, 'D'));
-
-        // when
-        when(pokerRank.calculatePokerRank(black)).thenReturn(8);
-        when(pokerRank.calculatePokerRank(white)).thenReturn(7);
-        int actual = pokerCompare.compare(black, white);
-        // then
-        assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
-    }
-
-    @Test
     void should_return_white_win_value_when_compare_given_black_3D_4D_5D_6D_7D_and_white_4D_5D_6D_7D_8D() {
         // given
         List<Poker> black = new ArrayList<>();
@@ -168,31 +143,6 @@ public class PokerCompareTest {
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.WHITE_WIN.getValue(), actual);
-    }
-
-    @Test
-    void should_return_black_win_value_when_compare_given_black_3H_3D_3S_5C_3D_and_white_3H_3D_5S_5C_3D() {
-        // given
-        List<Poker> black = new ArrayList<>();
-        black.add(new Poker(3, 'D'));
-        black.add(new Poker(4, 'D'));
-        black.add(new Poker(5, 'D'));
-        black.add(new Poker(6, 'D'));
-        black.add(new Poker(7, 'D'));
-
-        List<Poker> white = new ArrayList<>();
-        white.add(new Poker(3, 'H'));
-        white.add(new Poker(3, 'D'));
-        white.add(new Poker(5, 'S'));
-        white.add(new Poker(5, 'C'));
-        white.add(new Poker(3, 'D'));
-
-        // when
-        when(pokerRank.calculatePokerRank(black)).thenReturn(7);
-        when(pokerRank.calculatePokerRank(white)).thenReturn(6);
-        int actual = pokerCompare.compare(black, white);
-        // then
-        assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
     }
 
 }
