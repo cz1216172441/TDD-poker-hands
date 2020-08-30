@@ -9,7 +9,8 @@ public enum PokerRankEnum {
     STRAIGHT("Straight", 4),
     THREE_OF_A_KIND("Three of a kind", 3),
     TWO_PAIRS("Two pairs", 2),
-    PAIR("Pair", 1);
+    PAIR("Pair", 1),
+    HIGH_CARD("High Card", 0);
 
     private String name;
 

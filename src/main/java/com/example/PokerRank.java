@@ -32,7 +32,7 @@ public class PokerRank {
         if (isPair(pokersSorted)) {
             return PokerRankEnum.PAIR.getRank();
         }
-        return -1;
+        return PokerRankEnum.HIGH_CARD.getRank();
     }
 
     private boolean isPokersStraightFlush(List<Poker> pokers) {
