@@ -7,14 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class PokerCompareTest {
 
     private PokerCompare pokerCompare;
 
+    private PokerRank pokerRank;
+
     @BeforeEach
-    private void setUp() {
-        pokerCompare = new PokerCompare();
+    public void setUp() {
+        pokerRank = mock(PokerRank.class);
+        pokerCompare = new PokerCompare(pokerRank);
     }
 
     @Test
@@ -35,6 +40,8 @@ public class PokerCompareTest {
         white.add(new Poker(14, 'H'));
 
         // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(0);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(0);
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.WHITE_WIN.getValue(), actual);
@@ -58,6 +65,8 @@ public class PokerCompareTest {
         white.add(new Poker(10, 'S'));
 
         // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(0);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(0);
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
@@ -81,6 +90,8 @@ public class PokerCompareTest {
         white.add(new Poker(10, 'S'));
 
         // when
+        when(pokerRank.calculatePokerRank(black)).thenReturn(8);
+        when(pokerRank.calculatePokerRank(white)).thenReturn(0);
         int actual = pokerCompare.compare(black, white);
         // then
         assertEquals(CompareResultEnum.BLACK_WIN.getValue(), actual);
