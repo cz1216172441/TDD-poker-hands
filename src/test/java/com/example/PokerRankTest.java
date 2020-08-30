@@ -71,4 +71,19 @@ public class PokerRankTest {
         assertEquals(PokerRankEnum.FLUSH.getRank(), actualRank);
     }
 
+    @Test
+    void should_return_straight_rank_when_calculate_poker_rank_given_3H_4D_5S_6C_7D() {
+        // given
+        List<Poker> pokers = new ArrayList<>();
+        pokers.add(new Poker(3, 'H'));
+        pokers.add(new Poker(4, 'D'));
+        pokers.add(new Poker(5, 'S'));
+        pokers.add(new Poker(6, 'C'));
+        pokers.add(new Poker(7, 'D'));
+        // when
+        int actualRank = pokerRank.calculatePokerRank(pokers);
+        // then
+        assertEquals(PokerRankEnum.STRAIGHT.getRank(), actualRank);
+    }
+
 }

@@ -20,6 +20,9 @@ public class PokerRank {
         if (isPokersFlush(pokersSorted)) {
             return PokerRankEnum.FLUSH.getRank();
         }
+        if (isPokersStraight(pokersSorted)) {
+            return PokerRankEnum.STRAIGHT.getRank();
+        }
         return -1;
     }
 
