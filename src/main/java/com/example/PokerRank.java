@@ -54,19 +54,17 @@ public class PokerRank {
     }
 
     private boolean isFourOfAKind(List<Poker> pokers) {
-        Map<Integer, Integer> map = classify(pokers);
-        for (Integer num: map.keySet()) {
-            if (map.get(num) == 4) {
-                return true;
-            }
-        }
-        return false;
+        return judgeRepeatedKind(pokers, 4);
     }
 
     private boolean isThreeOfAKind(List<Poker> pokers) {
+        return judgeRepeatedKind(pokers, 3);
+    }
+
+    private boolean judgeRepeatedKind(List<Poker> pokers, int i) {
         Map<Integer, Integer> map = classify(pokers);
-        for (Integer num: map.keySet()) {
-            if (map.get(num) == 3) {
+        for (Integer num : map.keySet()) {
+            if (map.get(num) == i) {
                 return true;
             }
         }
@@ -74,19 +72,20 @@ public class PokerRank {
     }
 
     private boolean isTwoPairs(List<Poker> pokers) {
-        long count = pokers.stream()
-                .map(Poker::getNum)
-                .distinct()
-                .count();
+        long count = getDistinctPokersNumCount(pokers);
         return count == 3;
     }
 
     private boolean isFullHouse(List<Poker> pokers) {
-        long count = pokers.stream()
+        long count = getDistinctPokersNumCount(pokers);
+        return count == 2;
+    }
+
+    private long getDistinctPokersNumCount(List<Poker> pokers) {
+        return pokers.stream()
                 .map(Poker::getNum)
                 .distinct()
                 .count();
-        return count == 2;
     }
 
     private Map<Integer, Integer> classify(List<Poker> pokers) {
